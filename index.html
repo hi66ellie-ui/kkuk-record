@@ -702,7 +702,7 @@
 @keyframes butterflyCruise25{0%{transform:translate(85vw,-7px) rotate(5deg)}25%{transform:translate(41vw,-20px) rotate(-5deg)}50%{transform:translate(0vw,-8px) rotate(5deg)}75%{transform:translate(-41vw,-22px) rotate(-6deg)}100%{transform:translate(-85vw,-10px) rotate(5deg)}}
 @keyframes butterflyCruiseB25{0%{transform:translate(90vw,-18px) rotate(-4deg)}25%{transform:translate(46vw,-5px) rotate(6deg)}50%{transform:translate(0vw,-18px) rotate(-5deg)}75%{transform:translate(-45vw,-4px) rotate(5deg)}100%{transform:translate(-90vw,-16px) rotate(-4deg)}}
 .scene[data-stage="2"] #frog-1{display:none!important}
-.scene[data-stage="2"] #frog-2{display:block!important;left:65%!important;top:67%!important;width:clamp(80px,23vw,100px)!important;z-index:3!important;animation:none!important;transform:none!important}
+.scene[data-stage="2"] #frog-2{display:block!important;left:65%!important;top:67%!important;width:clamp(80px,23vw,100px)!important;z-index:3!important;animation:none!important;}
 .scene #frog-2 img{display:block;width:100%;height:auto;object-fit:contain;filter:none}
 .scene[data-stage="2"] #frog-2::after{display:none!important;content:none!important}
 .scene[data-stage="2"] #ant-parade{display:block!important;left:-110px!important;bottom:5.8%!important;opacity:1!important;z-index:5!important;animation:antsStraight25 23s linear infinite!important;animation-delay:-7s!important}
@@ -777,6 +777,16 @@
 .scene #earthworm{display:none!important;visibility:hidden!important;animation:none!important}
 .scene[data-stage="3"] #snail{display:block!important;visibility:visible!important;left:auto!important;right:-85px!important;top:auto!important;bottom:5%!important;opacity:1!important;z-index:9!important;animation:crossMeadowReverseV21 36s linear infinite!important;animation-delay:-7s!important}
 @media(prefers-reduced-motion:reduce){.scene[data-stage="3"] #snail{animation:none!important;right:30%!important;transform:none!important}}
+
+/* v33: face the direction of travel and keep both frogs hopping */
+.scene[data-stage="3"] #snail svg{transform:scaleX(-1)!important;transform-origin:center!important}
+.scene[data-stage="2"] #frog-2,.scene[data-stage="2"] #frog-3{animation:frogLeap30 2.8s ease-in-out infinite!important}
+.scene[data-stage="2"] #frog-2{animation-delay:0s!important}
+.scene[data-stage="2"] #frog-3{animation-delay:-1.4s!important}
+.scene[data-stage="3"] #frog-2::after,.scene[data-stage="3"] #frog-3::after{content:'♬'!important;display:block!important;position:absolute;left:75%;top:-18px;color:#fff6aa;font: bold 23px sans-serif;-webkit-text-stroke:1px #211c20;paint-order:stroke fill;text-shadow:-1px -1px #211c20,1px 1px #211c20;opacity:1!important;animation:noteFloat33 2s ease-in-out infinite!important}
+.scene[data-stage="3"] #frog-3::after{animation-delay:-1s!important}
+@keyframes noteFloat33{0%,100%{transform:translateY(3px);opacity:.75}50%{transform:translateY(-5px);opacity:1}}
+@media(prefers-reduced-motion:reduce){.scene[data-stage="2"] #frog-2,.scene[data-stage="2"] #frog-3,.scene[data-stage="3"] #frog-2::after,.scene[data-stage="3"] #frog-3::after{animation:none!important}}
 </style><!-- kkuk-record v27 phone download package -->
 </head><body>
 <div id="app">
