@@ -819,6 +819,10 @@
 .scene[data-stage="3"] #frog-3 {animation-delay:0s!important}
 @keyframes frogDance39 {0%,50%,100%{transform:rotate(0)} 25%{transform:translateY(-1px) rotate(-8deg)} 75%{transform:translateY(-1px) rotate(8deg)}}
 @media(prefers-reduced-motion:reduce){.scene #cat-idle .cat-tail-39{animation:none!important}.scene[data-stage="3"] #frog-2,.scene[data-stage="3"] #frog-3{animation:none!important;transform:none!important}}
+
+/* v40: only the eyes change on blink, leaving the cat's silhouette untouched */
+.scene #cat-idle .cat-blink-38 {-webkit-mask-image:radial-gradient(ellipse 7% 5% at 52% 36%,#000 98%,transparent 100%),radial-gradient(ellipse 7% 5% at 71% 30%,#000 98%,transparent 100%);mask-image:radial-gradient(ellipse 7% 5% at 52% 36%,#000 98%,transparent 100%),radial-gradient(ellipse 7% 5% at 71% 30%,#000 98%,transparent 100%)}
+.scene[data-stage="3"] #frog-2 .frog-original-note,.scene[data-stage="3"] #frog-3 .frog-original-note {filter:brightness(0) invert(1) drop-shadow(.6px 0 #29232a) drop-shadow(-.6px 0 #29232a) drop-shadow(0 .6px #29232a) drop-shadow(0 -.6px #29232a)!important}
 </style><!-- kkuk-record v27 phone download package -->
 </head><body>
 <div id="app">
@@ -902,8 +906,8 @@ function monthly(m=localDate().slice(0,7)){const rows=state.records.filter(r=>r.
 function streak(){const set=new Set(state.records.filter(r=>r.date<=localDate()).map(r=>r.date));let cur=dateFrom(localDate());if(!set.has(localDate(cur)))cur=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate()-1,12);let n=0;while(n<365&&set.has(localDate(cur))){n++;cur=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate()-1,12)}return n}
 function clearTimers(){timers.forEach(clearTimeout);timers=[]}function after(fn,ms){timers.push(setTimeout(fn,ms))}
 
-const flowerPositions=[{x:74,b:6},{x:12,b:17},{x:85,b:4},{x:25,b:12},{x:60,b:19},{x:43,b:4},{x:95,b:15},{x:4,b:8},{x:34,b:21},{x:68,b:12},{x:52,b:9},{x:18,b:22},{x:82,b:20},{x:11,b:5},{x:92,b:10}];
-const flowerSrc=$('plant-open').src;
+const flowerPositions=[{x:1,b:3},{x:12,b:13},{x:87,b:3},{x:3,b:18},{x:88,b:7},{x:12,b:4},{x:2,b:10},{x:86,b:2},{x:10,b:20}];
+const flowerSrc='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3MiA5NiI+PGcgc3Ryb2tlPSIjMjYyMTJhIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMzYgNTAgUTM0IDY5IDM2IDkxIiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTM2IDg4IFExOSA4OCAxNCA3NSBRMjYgNzIgMzYgODhNMzYgODggUTQ4IDcyIDYwIDc1IFE1NSA4OCAzNiA4OCIgZmlsbD0iIzhjY2Y3MiIvPjxnIGZpbGw9IiNmZmZlZjQiPjxlbGxpcHNlIGN4PSIzNiIgY3k9IjE3IiByeD0iNi4yIiByeT0iMTMiLz48ZWxsaXBzZSBjeD0iMzYiIGN5PSIxNyIgcng9IjYuMiIgcnk9IjEzIiB0cmFuc2Zvcm09InJvdGF0ZSg0NSAzNiAzNikiLz48ZWxsaXBzZSBjeD0iMzYiIGN5PSIxNyIgcng9IjYuMiIgcnk9IjEzIiB0cmFuc2Zvcm09InJvdGF0ZSg5MCAzNiAzNikiLz48ZWxsaXBzZSBjeD0iMzYiIGN5PSIxNyIgcng9IjYuMiIgcnk9IjEzIiB0cmFuc2Zvcm09InJvdGF0ZSgxMzUgMzYgMzYpIi8+PGVsbGlwc2UgY3g9IjM2IiBjeT0iMTciIHJ4PSI2LjIiIHJ5PSIxMyIgdHJhbnNmb3JtPSJyb3RhdGUoMTgwIDM2IDM2KSIvPjxlbGxpcHNlIGN4PSIzNiIgY3k9IjE3IiByeD0iNi4yIiByeT0iMTMiIHRyYW5zZm9ybT0icm90YXRlKDIyNSAzNiAzNikiLz48ZWxsaXBzZSBjeD0iMzYiIGN5PSIxNyIgcng9IjYuMiIgcnk9IjEzIiB0cmFuc2Zvcm09InJvdGF0ZSgyNzAgMzYgMzYpIi8+PGVsbGlwc2UgY3g9IjM2IiBjeT0iMTciIHJ4PSI2LjIiIHJ5PSIxMyIgdHJhbnNmb3JtPSJyb3RhdGUoMzE1IDM2IDM2KSIvPjwvZz48Y2lyY2xlIGN4PSIzNiIgY3k9IjM2IiByPSI3IiBmaWxsPSIjZjlkYzM5IiBzdHJva2U9IiNhZDg3MjMiIHN0cm9rZS13aWR0aD0iMS40Ii8+PC9nPjwvc3ZnPg==';
 /* Replace only weather accents; preserve the original cat, ground and saved records. */
 const rainyCloudArt=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 566 160"><g fill="#aebbd6" stroke="#29283e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M-10 100Q-7 72 24 66Q35 42 60 48Q78 19 112 32Q138 24 157 50Q187 48 199 75Q220 80 220 103Q220 122 195 124H12Q-7 121-10 100Z"/><path d="M175 113Q179 88 201 81Q215 60 236 68Q252 41 286 52Q306 44 326 70Q355 67 372 90Q393 92 396 114Q394 133 374 135H196Q177 134 175 113Z"/><path d="M352 100Q353 73 381 66Q393 43 420 47Q443 19 478 32Q505 26 520 51Q546 50 560 72Q576 77 575 101Q573 121 549 123H375Q354 120 352 100Z"/></g><g fill="none" stroke="#dce3f2" stroke-width="5" stroke-linecap="round" opacity=".85"><path d="M28 82q20-14 43 0M87 58q16-10 29 2M222 96q16-13 37-1M290 73q13-9 28 1M388 81q18-13 41 1M458 53q16-10 31 2"/></g></svg>`;
 $('cloud-2').src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(rainyCloudArt);
@@ -920,8 +924,8 @@ function updateGardenFlowers(count, newest=false){
  for(let i=0;i<capped;i++){
   const base=flowerPositions[i%flowerPositions.length],cycle=Math.floor(i/flowerPositions.length);
   const item=document.createElement('img');item.src=flowerSrc;item.alt='';item.loading='eager';
-  item.style.left=`${Math.max(1,Math.min(94,base.x-2+(cycle%3)*1.1))}%`;
-  item.style.bottom=`${Math.min(21,base.b+(cycle%3)*2)}%`;
+  item.style.left=`${Math.max(1,Math.min(94,base.x))}%`;
+  item.style.bottom=`${Math.min(21,base.b)}%`;
   const shrink=Math.max(.55,1-cycle*.14);item.style.width=`clamp(${Math.round(28*shrink)}px,${(8.8*shrink).toFixed(2)}vw,${Math.round(46*shrink)}px)`;
   if(newest&&i===capped-1)item.classList.add('just-grown');
   holder.appendChild(item);
