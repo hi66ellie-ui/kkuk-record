@@ -850,6 +850,12 @@
 #garden-flowers{z-index:13!important}
 .scene .grass-cat-v42{z-index:14!important}
 #garden-flowers .sprite-2,#garden-flowers .sprite-3{width:clamp(24px,7.5vw,36px)!important}
+
+/* Foreground paths below the cat's boots; flowers sit in front of the snail. */
+.scene[data-stage="3"] #snail{bottom:0%!important;z-index:12!important}
+.scene[data-stage="2"] #ant-parade{bottom:0%!important;z-index:12!important}
+#garden-flowers{z-index:13!important}
+#garden-flowers .garden-sprite{filter:brightness(1.15) contrast(.72)!important}
 </style><!-- kkuk-record v27 phone download package -->
 </head><body>
 <div id="app">
@@ -933,7 +939,7 @@ function monthly(m=localDate().slice(0,7)){const rows=state.records.filter(r=>r.
 function streak(){const set=new Set(state.records.filter(r=>r.date<=localDate()).map(r=>r.date));let cur=dateFrom(localDate());if(!set.has(localDate(cur)))cur=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate()-1,12);let n=0;while(n<365&&set.has(localDate(cur))){n++;cur=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate()-1,12)}return n}
 function clearTimers(){timers.forEach(clearTimeout);timers=[]}function after(fn,ms){timers.push(setTimeout(fn,ms))}
 
-const flowerPositions=[{"x": 2, "b": 3}, {"x": 14, "b": 4}, {"x": 82, "b": 4}, {"x": 91, "b": 10}, {"x": 7, "b": 15}, {"x": 19, "b": 16}, {"x": 76, "b": 12}, {"x": 92, "b": 3}, {"x": 1, "b": 21}, {"x": 14, "b": 22}, {"x": 87, "b": 17}, {"x": 26, "b": 9}, {"x": 72, "b": 4}, {"x": 5, "b": 9}, {"x": 22, "b": 3}, {"x": 80, "b": 19}, {"x": 97, "b": 17}, {"x": 18, "b": 10}, {"x": 96, "b": 23}, {"x": 30, "b": 16}, {"x": 70, "b": 11}, {"x": 1, "b": 15}, {"x": 11, "b": 10}, {"x": 24, "b": 22}, {"x": 86, "b": 10}, {"x": 95, "b": 14}, {"x": 5, "b": 26}, {"x": 18, "b": 27}, {"x": 77, "b": 25}, {"x": 90, "b": 25}];
+const flowerPositions=[{"x": 2, "b": 3}, {"x": 14, "b": 4}, {"x": 82, "b": 4}, {"x": 91, "b": 10}, {"x": 7, "b": 15}, {"x": 19, "b": 16}, {"x": 76, "b": 12}, {"x": 92, "b": 3}, {"x": 1, "b": 21}, {"x": 14, "b": 22}, {"x": 87, "b": 17}, {"x": 26, "b": 9}, {"x": 72, "b": 4}, {"x": 5, "b": 9}, {"x": 22, "b": 3}, {"x": 80, "b": 19}, {"x": 97, "b": 17}, {"x": 18, "b": 10}, {"x": 90, "b": 2}, {"x": 30, "b": 16}, {"x": 70, "b": 11}, {"x": 1, "b": 15}, {"x": 11, "b": 10}, {"x": 24, "b": 22}, {"x": 86, "b": 10}, {"x": 95, "b": 14}, {"x": 5, "b": 26}, {"x": 18, "b": 27}, {"x": 68, "b": 3}, {"x": 80, "b": 2}];
 
 /* Replace only weather accents; preserve the original cat, ground and saved records. */
 const rainyCloudArt=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 566 160"><g fill="#aebbd6" stroke="#29283e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M-10 100Q-7 72 24 66Q35 42 60 48Q78 19 112 32Q138 24 157 50Q187 48 199 75Q220 80 220 103Q220 122 195 124H12Q-7 121-10 100Z"/><path d="M175 113Q179 88 201 81Q215 60 236 68Q252 41 286 52Q306 44 326 70Q355 67 372 90Q393 92 396 114Q394 133 374 135H196Q177 134 175 113Z"/><path d="M352 100Q353 73 381 66Q393 43 420 47Q443 19 478 32Q505 26 520 51Q546 50 560 72Q576 77 575 101Q573 121 549 123H375Q354 120 352 100Z"/></g><g fill="none" stroke="#dce3f2" stroke-width="5" stroke-linecap="round" opacity=".85"><path d="M28 82q20-14 43 0M87 58q16-10 29 2M222 96q16-13 37-1M290 73q13-9 28 1M388 81q18-13 41 1M458 53q16-10 31 2"/></g></svg>`;
